@@ -1,0 +1,13 @@
+.image-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping for horizontal scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-height: 50%;
+  width: 100%;
+}
+.image-container img {
+  display: inline-block;
+  flex: 0 0 calc(40% - 10px); /* Giảm phần tử flex thành 40% */
+  margin: 5px;
+  max-width: calc(25% - 10px); /* Giảm max-width tương ứng */
+}

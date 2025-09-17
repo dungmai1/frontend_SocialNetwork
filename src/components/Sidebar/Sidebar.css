@@ -1,0 +1,7 @@
+.iq-menu .active {
+  font-weight: bold;
+  background-color: aliceblue;
+}
+.iq-menu .inactive {
+  font-weight: normal;
+}

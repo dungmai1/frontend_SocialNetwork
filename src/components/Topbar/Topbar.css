@@ -1,0 +1,22 @@
+.iq-top-navbar{
+    position:fixed;
+    height: 75px;
+}
+.notification-badge {
+    width: 15px; /* chỉnh sửa chiều rộng theo ý bạn */
+    height: 15px; /* chỉnh sửa chiều cao theo ý bạn */
+    padding: 4px; /* chỉnh sửa khoảng đệm theo ý bạn */
+}
+.navbar-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center;
+}
+.signoutcss{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center;
+}
+  
