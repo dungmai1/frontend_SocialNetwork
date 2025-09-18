@@ -1,0 +1,212 @@
+/* Modern Navbar Styles */
+.navbar-container {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.search-input {
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.nav-button {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+}
+
+.nav-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Sidebar Styles */
+.sidebar-container {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.sidebar-item {
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  margin-bottom: 4px;
+}
+
+.sidebar-item:hover {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  transform: translateX(8px);
+}
+
+.sidebar-item.active {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.sidebar-user-card {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  border: none;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+/* Right Sidebar Styles */
+.right-sidebar-container {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.friend-item {
+  transition: all 0.2s ease;
+}
+
+.friend-item:hover {
+  background: rgba(79, 172, 254, 0.1);
+  transform: translateX(-4px);
+}
+
+.online-indicator {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(72, 187, 120, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+  }
+}
+
+/* Trending Item Animation */
+.trending-item {
+  transition: all 0.2s ease;
+}
+
+.trending-item:hover {
+  background: rgba(66, 153, 225, 0.05);
+  border-radius: 8px;
+  transform: scale(1.02);
+}
+
+/* Suggested Friend Card */
+.suggested-friend-card {
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, #ffffff 0%, #f7fafc 100%);
+}
+
+.suggested-friend-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Item */
+.event-item {
+  transition: all 0.2s ease;
+}
+
+.event-item:hover {
+  background: rgba(79, 172, 254, 0.05);
+  transform: translateX(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .navbar-search {
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .sidebar-container {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar-container.mobile-open {
+    transform: translateX(0);
+  }
+}
+
+/* Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Badge Animations */
+.notification-badge {
+  animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+  
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  
+  40% {
+    transform: scale3d(.9, .9, .9);
+  }
+  
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  
+  80% {
+    transform: scale3d(.97, .97, .97);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}

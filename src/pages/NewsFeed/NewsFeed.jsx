@@ -1,18 +1,25 @@
 import React, { useEffect, useState, useRef } from "react";
 import PostService from "../../services/PostService";
-import ListPost from "../../components/ListPost/ListPost";
+import ListPostNew from "../../components/ListPost/ListPostNew";
 import CreatePost from "../../components/CreatePost/CreatePost";
+import Layout from "../../components/Layout/Layout";
+import { LoadingFeed } from "../../components/Loading/LoadingComponents";
 import { listAll, ref } from "firebase/storage";
 import { imageDb } from "../../firebase/config";
+import { Box, Container, VStack, Text, Center } from "@chakra-ui/react";
 
 export default function NewsFeed({ user }) {
   const [load, setload] = useState(false);
   const [listPost, setListPost] = useState([]);
+  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("accessToken");
+  
   const handleLoad = () => {
     setload(!load);
   };
+
   useEffect(() => {
+    setLoading(true);
     PostService.getAllPost(token)
       .then((res) => {
         const sortedPosts = res.data.sort((a, b) => {
@@ -23,23 +30,37 @@ export default function NewsFeed({ user }) {
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    console.log(listPost);
   }, [load]);
+
   return (
-    <div id="content-page" className="content-page">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-10 mx-auto row m-0 p-0">
-            <div className="col-sm-12">
-              <CreatePost handleLoad={handleLoad} user={user} />
-            </div>
-            {listPost.map((post) => (
-              <ListPost key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Layout>
+      <Container maxW="container.md" py={4}>
+        <VStack spacing={6} align="stretch">
+          <Box>
+            <CreatePost handleLoad={handleLoad} user={user} />
+          </Box>
+          
+          {loading ? (
+            <LoadingFeed count={5} />
+          ) : listPost.length > 0 ? (
+            <>
+              {listPost.map((post) => (
+                <ListPostNew key={post.id} post={post} handleLoad={handleLoad} />
+              ))}
+            </>
+          ) : (
+            <Center py={20}>
+              <Text color="gray.500" fontSize="lg">
+                No posts yet. Be the first to share something!
+              </Text>
+            </Center>
+          )}
+        </VStack>
+      </Container>
+    </Layout>
   );
 }

@@ -3,6 +3,7 @@ import PostService from "../../services/PostService";
 import ListPost from "../../components/ListPost/ListPost";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import UserService from "../../services/UserService";
+import Layout from "../../components/Layout/Layout";
 import { useParams } from "react-router-dom";
 import RelationshipService from "../../services/RelationshipService";
 import { UserContext } from "../../context/UserContext";

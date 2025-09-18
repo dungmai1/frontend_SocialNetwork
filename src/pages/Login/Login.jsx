@@ -109,16 +109,16 @@ export default function Login() {
             <div className="col-md-6 bg-white pt-5 pt-5 pb-lg-0 pb-5">
               <div className="sign-in-from">
                 <h1 className="mb-0">Sign in</h1>
-                <p>Enter your user name and password to access home page.</p>
+                <p>Enter your phone number and password to access home page.</p>
                 <form className="mt-4" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label className="form-label">User name</label>
+                    <label className="form-label">Phone number</label>
                     <input
-                      type="text"
-                      name="username"
+                      type="phone"
+                      name="phone"
                       className="form-control mb-0"
-                      placeholder="Enter user name"
-                      value={account.username}
+                      placeholder="Enter phone number"
+                      value={account.phone}
                       onChange={handleChange}
                     />
                   </div>

@@ -8,7 +8,6 @@ import {
 import Home from "./pages/Home/Home.jsx";
 import Hs from "./pages/Home/Hs.jsx";
 
-
 import Profile from "./pages/Profile/Profile.jsx";
 import NewsFeed from "./pages/NewsFeed/NewsFeed.jsx";
 import Group from "./pages/Group/Group.jsx";
@@ -20,6 +19,7 @@ import Error from "./pages/Error/Error.jsx";
 import Saved from "./pages/Saved/Saved.jsx";
 import checkAuth from "./Auth/checkAuth.js";
 import { UserProvider } from "./context/UserContext.js";
+import SocialThemeProvider from "./context/ThemeProvider.js";
 import ScrollToTop from "./router/ScrollToTop.js";
 
 import { UIKitSettingsBuilder } from "@cometchat/uikit-shared";
@@ -51,60 +51,63 @@ CometChatUIKit.init(UIKitSettings)
     console.log("Initialization completed successfully");
   })
   .catch(console.log);
+
 function App() {
   return (
-    <UserProvider>
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route
-            path="/"
-            element={checkAuth() ? <Home /> : <Navigate to="/login" />}
-          >
-            <Route path="/" element={<NewsFeed />} />
-            <Route path="user/:username" element={<Profile />} />
-            <Route path="group" element={<Group />} />
-            <Route path="saved" element={<Saved />} />
-            <Route path="postfollowing" element={<PostFollowing />} />
-            <Route path="error" element={<Error />} />
-            <Route path="search" element={<Search />} />
-            <Route path="searchUser" element={<SearchUser />} />
-          </Route>
-          <Route
-            path="message/:username"
-            element={checkAuth() ? <Message /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="message"
-            element={
-              checkAuth() ? (
-                <Message />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="login"
-            element={checkAuth() ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="register"
-            element={checkAuth() ? <Navigate to="/" /> : <Register />}
-          />
-          <Route
-            path="hs"
-            element={
-              checkAuth() ? (
-                <Hs/>
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-        </Routes>
-      </Router>
-    </UserProvider>
+    <SocialThemeProvider>
+      <UserProvider>
+        <Router>
+          <ScrollToTop />
+          <Routes>
+            <Route
+              // path="/"
+              // element={checkAuth() ? <Home /> : <Navigate to="/login" />}
+            >
+              <Route path="/" element={<NewsFeed />} />
+              <Route path="user/:username" element={<Profile />} />
+              <Route path="group" element={<Group />} />
+              <Route path="saved" element={<Saved />} />
+              <Route path="postfollowing" element={<PostFollowing />} />
+              <Route path="error" element={<Error />} />
+              <Route path="search" element={<Search />} />
+              <Route path="searchUser" element={<SearchUser />} />
+            </Route>
+            <Route
+              path="message/:username"
+              element={checkAuth() ? <Message /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="message"
+              element={
+                checkAuth() ? (
+                  <Message />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="login"
+              element={checkAuth() ? <Navigate to="/" /> : <Login />}
+            />
+            <Route
+              path="register"
+              element={checkAuth() ? <Navigate to="/" /> : <Register />}
+            />
+            <Route
+              path="hs"
+              element={
+                checkAuth() ? (
+                  <Hs/>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
+        </Router>
+      </UserProvider>
+    </SocialThemeProvider>
   );
 }
 export default App;
