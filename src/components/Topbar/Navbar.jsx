@@ -44,10 +44,13 @@ const Navbar = () => {
   
   const bg = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
+  const handleBackToLogin = () => {
+    navigate("/login");
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    navigate("/login");
+    handleBackToLogin();
   };
 
   const handleSearch = (e) => {

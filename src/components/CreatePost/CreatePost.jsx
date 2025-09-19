@@ -82,12 +82,12 @@ export default function CreatePost({ handleLoad }) {
         imageUrl: folderId,
       };
       
-      const update_extractvector = {
-        ...extract_vector,
-        image_path: folderId,
-      };
+      // const update_extractvector = {
+      //   ...extract_vector,
+      //   image_path: folderId,
+      // };
       
-      await Yolov8.ExtractVector(update_extractvector);
+      // await Yolov8.ExtractVector(update_extractvector);
       await PostService.createPost(updatedPost, token);
       
       toast({

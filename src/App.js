@@ -60,8 +60,8 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route
-              // path="/"
-              // element={checkAuth() ? <Home /> : <Navigate to="/login" />}
+              path="/"
+              element={checkAuth() ? <Home /> : <Navigate to="/login" />}
             >
               <Route path="/" element={<NewsFeed />} />
               <Route path="user/:username" element={<Profile />} />

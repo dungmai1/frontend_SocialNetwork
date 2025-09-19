@@ -11,32 +11,31 @@ export default function Login() {
   const handleChange = (e) => {
     setaccount({ ...account, [e.target.name]: e.target.value });
   };
-  const LoginComet = async (UID) => {
-    try {
-      await CometChatUIKit.getLoggedinUser().then(async (user) => {
-        if (!user) {
-          // Login user
-          const loggedInUser = await CometChatUIKit.login(UID);
-          console.log("Login Successful:", loggedInUser);
-        }
-      });
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
-  };
-
+  // const LoginComet = async (UID) => {
+  //   try {
+  //     await CometChatUIKit.getLoggedinUser().then(async (user) => {
+  //       if (!user) {
+  //         // Login user
+  //         const loggedInUser = await CometChatUIKit.login(UID);
+  //         console.log("Login Successful:", loggedInUser);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error("Error during login:", error);
+  //   }
+  // };
+  const handleClickLogin = () => {
+    navigate("/");
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await LoginService.Login(account);
+      console.log("Login Successful:", res.data);
       localStorage.setItem("accessToken", res.data.token);
-      await localStorage.setItem("username", res.data.user.usname);
-      const username = res.data.user.usname;
-      await LoginComet(username);
-      alert("Success");
-      window.location.replace("http://localhost:3000/");
+      handleClickLogin();
     } catch (error) {
-      alert("Login Fail")
+      alert("Login Fail");
       console.error("Error Login", error);
     }
   };
@@ -109,16 +108,16 @@ export default function Login() {
             <div className="col-md-6 bg-white pt-5 pt-5 pb-lg-0 pb-5">
               <div className="sign-in-from">
                 <h1 className="mb-0">Sign in</h1>
-                <p>Enter your phone number and password to access home page.</p>
+                <p>Enter your user name and password to access home page.</p>
                 <form className="mt-4" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label className="form-label">Phone number</label>
+                    <label className="form-label">User Name</label>
                     <input
-                      type="phone"
-                      name="phone"
+                      type="text"
+                      name="username"
                       className="form-control mb-0"
-                      placeholder="Enter phone number"
-                      value={account.phone}
+                      placeholder="Enter user name"
+                      value={account.username}
                       onChange={handleChange}
                     />
                   </div>
