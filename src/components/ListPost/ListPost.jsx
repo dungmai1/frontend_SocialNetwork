@@ -90,9 +90,9 @@ export default function ListPost({ post, handleLoad }) {
     });
   };
   const checkSaved = () => {
-    return checkSavePost.some((item) => {
-      return item.id === post.id;
-    });
+    // return checkSavePost.some((item) => {
+    //   return item.id === post.id;
+    // });
   };
   const handleSavePost = (e) => {
     e.preventDefault();
@@ -196,7 +196,7 @@ export default function ListPost({ post, handleLoad }) {
                 <div className="me-2">
                   <img
                     className="rounded-circle avatar-40"
-                    src={post.user.avatar}
+                    src={post.user?.avatar}
                     alt=""
                   />
                 </div>
@@ -211,11 +211,11 @@ export default function ListPost({ post, handleLoad }) {
                       >
                         <h5 className="mb-0 d-inline-block avatarToolTip">
                           <Link
-                            to={`/user/${post.user.usname}`}
+                            to={`/user/${post.user?.usname}`}
                             className=""
                             style={{ fontSize: "15px" }}
                           >
-                            {post.user.displayname}
+                            {post.user?.displayname}
                           </Link>
                         </h5>
                       </Tippy>
@@ -412,7 +412,7 @@ export default function ListPost({ post, handleLoad }) {
                         <div className="d-flex flex-wrap">
                           <div className="user-img">
                             <img
-                              src={cmtList.user.avatar}
+                              src={cmtList.user?.avatar}
                               alt="userimg"
                               className="avatar-35 rounded-circle img-fluid"
                             />
@@ -425,7 +425,7 @@ export default function ListPost({ post, handleLoad }) {
                                   className=""
                                   style={{ fontSize: "15px" }}
                                 >
-                                  {cmtList.user.displayname}
+                                  {cmtList.user?.displayname}
                                 </a>
                               </h6>
                               <p className="ms-1 mb-0 d-inline-block">

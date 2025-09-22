@@ -112,9 +112,9 @@ export default function ListPost({ post, handleLoad }) {
   };
 
   const checkSaved = () => {
-    return checkSavePost.some((item) => {
-      return item.id === post.id;
-    });
+    // return checkSavePost.some((item) => {
+    //   return item.id === post.id;
+    // });
   };
 
   const handleSavePost = (e) => {
@@ -256,7 +256,7 @@ export default function ListPost({ post, handleLoad }) {
       {/* Post Header */}
       <Flex p={4} align="center">
         <Avatar
-          src={post.user.avatar}
+          src={post.user?.avatar}
           size="md"
           mr={3}
         />
@@ -269,10 +269,10 @@ export default function ListPost({ post, handleLoad }) {
           >
             <Text fontWeight="semibold" fontSize="md">
               <Link
-                to={`/user/${post.user.usname}`}
+                to={`/user/${post.user?.usname}`}
                 style={{ textDecoration: "none" }}
               >
-                {post.user.displayname}
+                {post.user?.displayname}
               </Link>
             </Text>
           </Tippy>
@@ -397,7 +397,7 @@ export default function ListPost({ post, handleLoad }) {
             {commentlist.map((cmtList) => (
               <Flex key={cmtList.id} gap={3}>
                 <Avatar
-                  src={cmtList.user.avatar}
+                  src={cmtList.user?.avatar}
                   size="sm"
                 />
                 <Box
@@ -409,7 +409,7 @@ export default function ListPost({ post, handleLoad }) {
                 >
                   <HStack spacing={2} align="baseline">
                     <Text fontWeight="semibold" fontSize="sm">
-                      {cmtList.user.displayname}
+                      {cmtList.user?.displayname}
                     </Text>
                     <Text fontSize="xs" color="gray.500">
                       {formatDate(cmtList.commentTime)}
