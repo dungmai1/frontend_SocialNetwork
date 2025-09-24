@@ -85,9 +85,9 @@ export default function ListPost({ post, handleLoad }) {
   };
 
   const checkLike = () => {
-    return userlikePost.some((item) => {
-      return item.phone === context.user.phone;
-    });
+    // return userlikePost.some((item) => {
+    //   return item.phone === context.user.phone;
+    // });
   };
   const checkSaved = () => {
     // return checkSavePost.some((item) => {

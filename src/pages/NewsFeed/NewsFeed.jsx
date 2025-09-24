@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import PostService from "../../services/PostService";
-import ListPostNew from "../../components/ListPost/ListPostNew";
+import ListPost from "../../components/ListPost/ListPost";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Layout from "../../components/Layout/Layout";
 import { LoadingFeed } from "../../components/Loading/LoadingComponents";
@@ -49,7 +49,7 @@ export default function NewsFeed({ user }) {
           ) : listPost.length > 0 ? (
             <>
               {listPost.map((post) => (
-                <ListPostNew key={post.id} post={post} handleLoad={handleLoad} />
+                <ListPost key={post.id} post={post} handleLoad={handleLoad} />
               ))}
             </>
           ) : (
