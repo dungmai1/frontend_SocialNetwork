@@ -4,8 +4,6 @@ import ListPost from "../../components/ListPost/ListPost";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Layout from "../../components/Layout/Layout";
 import { LoadingFeed } from "../../components/Loading/LoadingComponents";
-import { listAll, ref } from "firebase/storage";
-import { imageDb } from "../../firebase/config";
 import { Box, Container, VStack, Text, Center } from "@chakra-ui/react";
 
 export default function NewsFeed({ user }) {

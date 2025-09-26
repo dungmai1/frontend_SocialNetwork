@@ -23,12 +23,11 @@ export default function ListPost({ post, handleLoad }) {
   const context = useContext(UserContext);
   const [countlike, setcountlike] = useState("");
   const [comment, setcomment] = useState({
-    content_cmt: "",
+    content: "",
     imageUrl: "",
     postId: 0,
   });
   const [countcomment, setcountcomment] = useState("");
-  const [userlikePost, setuserlikePost] = useState([]);
   const [commentlist, setcommentlist] = useState([]);
   const [imgUrls, setimgUrls] = useState([]);
   const [checkSavePost, setcheckSavePost] = useState([]);
@@ -63,6 +62,13 @@ export default function ListPost({ post, handleLoad }) {
   const [showcomment, setshowcomment] = useState(false);
 
   const handleCommentToggle = () => {
+    CommentService.getAllCommentForPost(post.id, token)
+    .then((res) => {
+      setcommentlist(res.data);
+    })
+    .catch((error) => {
+      console.error("Error comment list", error);
+    });
     setshowcomment(!showcomment);
   };
 
@@ -122,7 +128,7 @@ export default function ListPost({ post, handleLoad }) {
     e.preventDefault();
     CommentService.createComment(comment, token)
       .then((res) => {
-        setcomment({ content_cmt: "", imageUrl: "", postId: 0 });
+        setcomment({ content: "", imageUrl: "", postId: 0 });
         setload(!load);
       })
       .catch((error) => {
@@ -141,14 +147,6 @@ export default function ListPost({ post, handleLoad }) {
       });
   };
   useEffect(() => {
-    LikeService.AllUserLikePost(post.id)
-      .then((res) => {
-        setuserlikePost(res.data);
-      })
-      .catch((error) => {
-        console.error("Error All User Like Post", error);
-      });
-
     LikeService.CountAllLikeForPost(post.id)
       .then((res) => {
         setcountlike(res.data);
@@ -165,26 +163,26 @@ export default function ListPost({ post, handleLoad }) {
         console.error("Error count comment", error);
       });
 
-    CommentService.getAllCommentForPost(post.id, token)
-      .then((res) => {
-        setcommentlist(res.data);
-      })
-      .catch((error) => {
-        console.error("Error comment list", error);
-      });
-    SavedService.LoadSavePost(token)
-      .then((res) => {
-        setcheckSavePost(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-      });
-    listAll(ref(imageDb, `dataImage/${post.imageUrl}`)).then((imgs) => {
-      const promises = imgs.items.map((val) => getDownloadURL(val));
-      Promise.all(promises).then((urls) => {
-        setimgUrls(urls);
-      });
-    });
+    // CommentService.getAllCommentForPost(post.id, token)
+    //   .then((res) => {
+    //     setcommentlist(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error comment list", error);
+    //   });
+    // SavedService.LoadSavePost(token)
+    //   .then((res) => {
+    //     setcheckSavePost(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching posts:", error);
+    //   });
+    // listAll(ref(imageDb, `dataImage/${post.imageUrl}`)).then((imgs) => {
+    //   const promises = imgs.items.map((val) => getDownloadURL(val));
+    //   Promise.all(promises).then((urls) => {
+    //     setimgUrls(urls);
+    //   });
+    // });
   }, [load]);
   return (
     <div className="col-sm-12">
@@ -412,7 +410,7 @@ export default function ListPost({ post, handleLoad }) {
                         <div className="d-flex flex-wrap">
                           <div className="user-img">
                             <img
-                              src={cmtList.user?.avatar}
+                              src={cmtList.userAvatar}
                               alt="userimg"
                               className="avatar-35 rounded-circle img-fluid"
                             />
@@ -425,14 +423,14 @@ export default function ListPost({ post, handleLoad }) {
                                   className=""
                                   style={{ fontSize: "15px" }}
                                 >
-                                  {cmtList.user?.displayname}
+                                  {cmtList.userDisplayname}
                                 </a>
                               </h6>
                               <p className="ms-1 mb-0 d-inline-block">
                                 {formatDate(cmtList.commentTime)}{" "}
                               </p>
                             </div>
-                            <p className="mb-0">{cmtList.content_cmt}</p>
+                            <p className="mb-0">{cmtList.content}</p>
                             <div className="d-flex flex-wrap align-items-center comment-activity">
                               <a href="#">
                                 <i
@@ -454,8 +452,8 @@ export default function ListPost({ post, handleLoad }) {
                       type="text"
                       className="form-control rounded"
                       placeholder="Enter Your Comment"
-                      name="content_cmt"
-                      value={comment.content_cmt}
+                      name="content"
+                      value={comment.content}
                       onChange={handleChange}
                     />
                     {/* <input

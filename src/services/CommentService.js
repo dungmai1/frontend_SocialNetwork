@@ -5,7 +5,7 @@ class CommentService{
         return request.get(`comment/CountAllCommentForPost?PostId=${PostId}`);
     }
     getAllCommentForPost(PostId,token){
-        return request.get(`comment/getAllCommentForPost?PostId=${PostId}`,{
+        return request.get(`comment/getAllCommentForPost/${PostId}`,{
             headers:{
                 'Authorization': `Bearer ${token}`
             }

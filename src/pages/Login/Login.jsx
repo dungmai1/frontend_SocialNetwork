@@ -25,7 +25,7 @@ export default function Login() {
   //   }
   // };
   const handleClickLogin = () => {
-    navigate("/");
+    window.location.href = "/";
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
